@@ -44,6 +44,10 @@ function updateGrid() {
   });
 }
 
+resetButton.addEventListener("click", () => {
+  createGrid(gridSize);
+});
+
 gridSizeInput.addEventListener("change", (event) => {
   gridSize = parseInt(event.target.value);
   createGrid(gridSize);
