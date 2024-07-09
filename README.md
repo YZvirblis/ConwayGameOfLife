@@ -33,7 +33,7 @@ conways-game-of-life/
 
    ```bash
    git clone https://github.com/YZvirblis/ConwayGameOfLife.git
-   cd conways-game-of-life
+   cd ConwayGameOfLife
    ```
 
 2. Open `index.html` in your web browser to view and interact with the Game.
@@ -50,7 +50,7 @@ conways-game-of-life/
 
 ### Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/YuriyZhvirblis/conways-game-of-life/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/YZvirblis/ConwayGameOfLife/issues).
 
 ### Contact
 
