@@ -11,7 +11,7 @@ body {
 
 #grid {
   display: grid;
-  gap: 1px;
+  gap: 3px;
 }
 
 .cell {

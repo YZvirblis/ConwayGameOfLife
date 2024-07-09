@@ -1,4 +1,4 @@
-let gridSize = 20;
+let gridSize = 40;
 let grid = [];
 let interval;
 const gridElement = document.getElementById("grid");
@@ -7,6 +7,53 @@ const stopButton = document.getElementById("stop");
 const resetButton = document.getElementById("reset");
 const stepButton = document.getElementById("step");
 const gridSizeInput = document.getElementById("grid-size");
+const patternSelect = document.getElementById("pattern-select");
+const randomPatternButton = document.getElementById("random-pattern");
+
+const patterns = {
+  glider: [
+    [1, 0, 0],
+    [0, 1, 1],
+    [1, 1, 0],
+  ],
+  blinker: [[1, 1, 1]],
+  toad: [
+    [0, 1, 1, 1],
+    [1, 1, 1, 0],
+  ],
+  beacon: [
+    [1, 1, 0, 0],
+    [1, 1, 0, 0],
+    [0, 0, 1, 1],
+    [0, 0, 1, 1],
+  ],
+  pulsar: [
+    [0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
+    [0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0],
+    [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0],
+  ],
+  pentadecathlon: [
+    [0, 1, 1, 0],
+    [1, 0, 0, 1],
+    [0, 1, 1, 0],
+    [0, 1, 1, 0],
+    [1, 0, 0, 1],
+    [0, 1, 1, 0],
+    [0, 1, 1, 0],
+    [1, 0, 0, 1],
+    [0, 1, 1, 0],
+  ],
+};
 
 function createGrid(size) {
   gridElement.innerHTML = "";
@@ -82,6 +129,30 @@ function countAliveNeighbors(row, col) {
   return count;
 }
 
+function applyPattern(pattern) {
+  createGrid(gridSize);
+  const offsetRow = Math.floor(gridSize / 2 - pattern.length / 2);
+  const offsetCol = Math.floor(gridSize / 2 - pattern[0].length / 2);
+  pattern.forEach((row, rowIndex) => {
+    row.forEach((cell, colIndex) => {
+      if (cell) {
+        grid[offsetRow + rowIndex][offsetCol + colIndex] = true;
+      }
+    });
+  });
+  updateGrid();
+}
+
+function applyRandomPattern() {
+  createGrid(gridSize);
+  grid.forEach((row, rowIndex) => {
+    row.forEach((_, colIndex) => {
+      grid[rowIndex][colIndex] = Math.random() > 0.7;
+    });
+  });
+  updateGrid();
+}
+
 startButton.addEventListener("click", () => {
   clearInterval(interval);
   interval = setInterval(nextGeneration, 100);
@@ -103,5 +174,14 @@ gridSizeInput.addEventListener("change", (event) => {
   gridSize = parseInt(event.target.value);
   createGrid(gridSize);
 });
+
+patternSelect.addEventListener("change", (event) => {
+  const selectedPattern = event.target.value;
+  if (selectedPattern && patterns[selectedPattern]) {
+    applyPattern(patterns[selectedPattern]);
+  }
+});
+
+randomPatternButton.addEventListener("click", applyRandomPattern);
 
 createGrid(gridSize);
