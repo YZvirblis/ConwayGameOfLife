@@ -7,30 +7,56 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="controls">
-      <button id="start">Start</button>
-      <button id="stop">Stop</button>
-      <button id="reset">Reset</button>
-      <button id="step">Step</button>
-      <input
-        type="number"
-        id="grid-size"
-        placeholder="Grid Size"
-        min="10"
-        max="100"
-      />
-      <select id="pattern-select">
-        <option value="">Select a Pattern</option>
-        <option value="glider">Glider</option>
-        <option value="blinker">Blinker</option>
-        <option value="toad">Toad</option>
-        <option value="beacon">Beacon</option>
-        <option value="pulsar">Pulsar</option>
-        <option value="pentadecathlon">Pentadecathlon</option>
-      </select>
-      <button id="random-pattern">Random Pattern</button>
+    <div class="container">
+      <h1>Conway's Game of Life</h1>
+      <div id="controls">
+        <div class="control-group">
+          <button id="start" class="control-button">Start</button>
+          <button id="stop" class="control-button">Stop</button>
+          <button id="reset" class="control-button">Reset</button>
+          <button id="step" class="control-button">Step</button>
+        </div>
+        <div class="control-group">
+          <input
+            type="number"
+            id="grid-size"
+            placeholder="Grid Size"
+            min="10"
+            max="100"
+            class="control-input"
+          />
+          <select id="pattern-select" class="control-select">
+            <option value="">Select a Pattern</option>
+            <option value="glider">Glider</option>
+            <option value="blinker">Blinker</option>
+            <option value="toad">Toad</option>
+            <option value="beacon">Beacon</option>
+            <option value="pulsar">Pulsar</option>
+            <option value="pentadecathlon">Pentadecathlon</option>
+          </select>
+          <button id="random-pattern" class="control-button">
+            Random Pattern
+          </button>
+        </div>
+      </div>
+      <div id="grid"></div>
+      <div id="rules">
+        <h2>Rules of Conway's Game of Life</h2>
+        <ul>
+          <li>Any live cell with two or three live neighbors survives.</li>
+          <li>
+            Any dead cell with exactly three live neighbors becomes a live cell.
+          </li>
+          <li>
+            All other live cells die in the next generation. Similarly, all
+            other dead cells stay dead.
+          </li>
+        </ul>
+        <blockquote>
+          "Simple rules can lead to complex behavior." - John Horton Conway
+        </blockquote>
+      </div>
     </div>
-    <div id="grid"></div>
     <script src="index.js"></script>
   </body>
 </html>

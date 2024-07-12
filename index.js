@@ -1,4 +1,4 @@
-let gridSize = 40;
+let gridSize = 15; // Ensure the grid is large enough for patterns
 let grid = [];
 let interval;
 const gridElement = document.getElementById("grid");
@@ -10,6 +10,7 @@ const gridSizeInput = document.getElementById("grid-size");
 const patternSelect = document.getElementById("pattern-select");
 const randomPatternButton = document.getElementById("random-pattern");
 
+// Predefined patterns
 const patterns = {
   glider: [
     [1, 0, 0],
@@ -147,7 +148,7 @@ function applyRandomPattern() {
   createGrid(gridSize);
   grid.forEach((row, rowIndex) => {
     row.forEach((_, colIndex) => {
-      grid[rowIndex][colIndex] = Math.random() > 0.7;
+      grid[rowIndex][colIndex] = Math.random() > 0.7; // Adjust probability as needed
     });
   });
   updateGrid();
